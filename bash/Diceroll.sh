@@ -19,6 +19,16 @@ if [ -n "$whichdice" ]; then #did the user give us something
   if [ $whichdice -lt 4 -o $whichdice -gt 20 ]; then
       echo "Sides of the die must be from 4 to 20" >&2 #complain if they went outside 4 to 20
   else
-      whichdice=$whichdice #sace their number if it is a valid number from 4 to 20
+      numsides=$whichdice #sace their number if it is a valid number from 4 to 20
   fi
 fi
+
+whichdice=0
+sum=0
+while [ $whichdice -lt $numdice ]; do
+    dieroll=$(($RANDOM % $numsides + 1))
+    echo -n "$dieroll "
+    sum=$(($sum + $dieroll))
+    ((whichdie++))
+done
+echo "makes for a $sum"
